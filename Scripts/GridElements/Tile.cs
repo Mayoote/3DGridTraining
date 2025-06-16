@@ -4,7 +4,7 @@ using System;
 // Author : Maïtson PIERRE
 
 namespace Com.IsartDigital.TRPG.GridElements {
-	
+
 	public partial class Tile : Node2D
 	{
 		private enum TileState
@@ -13,11 +13,11 @@ namespace Com.IsartDigital.TRPG.GridElements {
 			OCCUPIED
 		}
 
-		private Sprite2D renderer;
-		public Vector2 indexPosition;
+		[Export] private Sprite2D renderer;
+		public Vector2I indexPosition;
 		public Vector2 CenterPosition {  get; private set; }
 
-		public Tile(Vector2 pIndexPosition) 
+		public Tile(Vector2I pIndexPosition) 
 		{
 			indexPosition = pIndexPosition;	
 		}

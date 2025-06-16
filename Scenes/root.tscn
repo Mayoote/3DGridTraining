@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://jtoqvxbev30u"]
+[gd_scene load_steps=2 format=3 uid="uid://jtoqvxbev30u"]
+
+[ext_resource type="Script" path="res://Scripts/GridElements/Managers/GridManager.cs" id="1_6fx71"]
 
 [node name="Root" type="Node2D"]
+
+[node name="ManagerOfManagers" type="Node" parent="."]
+
+[node name="GridManager" type="Node" parent="ManagerOfManagers"]
+script = ExtResource("1_6fx71")
+ROW_NUMBER = 5
+COL_NUMBER = 5

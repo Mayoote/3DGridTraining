@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuh5aigedoxj"]
+[gd_scene load_steps=3 format=3 uid="uid://cuh5aigedoxj"]
 
 [ext_resource type="Script" path="res://Scripts/GridElements/Tile.cs" id="1_e4nac"]
+[ext_resource type="Texture2D" uid="uid://b68yabu4hwyyq" path="res://Assets/Textures/GridElements/Tile.png" id="2_p6srn"]
 
-[node name="Tile" type="Node2D"]
+[node name="Tile" type="Node2D" node_paths=PackedStringArray("renderer")]
 script = ExtResource("1_e4nac")
+renderer = NodePath("Renderer")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Renderer" type="Sprite2D" parent="."]
+scale = Vector2(0.760444, 0.760444)
+texture = ExtResource("2_p6srn")
