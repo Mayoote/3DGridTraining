@@ -6,7 +6,12 @@
 
 [node name="ManagerOfManagers" type="Node" parent="."]
 
-[node name="GridManager" type="Node" parent="ManagerOfManagers"]
+[node name="GridManager" type="Node" parent="ManagerOfManagers" node_paths=PackedStringArray("visualGrid")]
 script = ExtResource("1_6fx71")
 ROW_NUMBER = 5
 COL_NUMBER = 5
+visualGrid = NodePath("../../Game/VisualGrid")
+
+[node name="Game" type="Node2D" parent="."]
+
+[node name="VisualGrid" type="Node" parent="Game"]
