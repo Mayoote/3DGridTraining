@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuh5aigedoxj"]
+
+[ext_resource type="Script" path="res://Scripts/GridElements/Tile.cs" id="1_e4nac"]
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_e4nac")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
