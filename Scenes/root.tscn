@@ -10,8 +10,8 @@ script = ExtResource("1_5pbbr")
 
 [node name="GridManager" type="Node2D" parent="ManagerOfManagers" node_paths=PackedStringArray("visualGrid")]
 script = ExtResource("1_6fx71")
-ROW_NUMBER = 5
-COL_NUMBER = 5
+ROW_NUMBER = 9
+COL_NUMBER = 9
 visualGrid = NodePath("../../Game/VisualGrid")
 
 [node name="Game" type="Node2D" parent="."]

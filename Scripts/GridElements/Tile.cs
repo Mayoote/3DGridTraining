@@ -1,4 +1,5 @@
 using Godot;
+using Maitson.PIERRE.Tools;
 using System;
 
 // Author : Maïtson PIERRE
@@ -13,7 +14,7 @@ public partial class Tile : Node2D
 		OCCUPIED
 	}
 
-	[Export] private Sprite2D renderer;
+	private Sprite2D renderer;
 
 	public TileState currentState;
 	public Vector2I indexPosition;
@@ -21,13 +22,7 @@ public partial class Tile : Node2D
 	public Vector2 Size {  get; private set; }
 	public override void _Ready()
 	{
-		currentState = TileState.EMPTY;
-		Size = renderer.Texture.GetSize();
-            CenterPosition = Size * .5f;
-		GlobalPosition = new Vector2(
-					CenterPosition.X + CenterPosition.X * indexPosition.X,
-					CenterPosition.Y + CenterPosition.Y * indexPosition.Y
-					) * renderer.Scale;
+		SetupTile();
 	}
 
 	public override void _Process(double pDelta)
@@ -40,4 +35,17 @@ public partial class Tile : Node2D
 	{
 
 	}
+
+	private void SetupTile()
+	{
+		renderer = (Sprite2D)FindChild(AssetPath.RENDERER_NAME);
+        currentState = TileState.EMPTY;
+        Size = renderer.Texture.GetSize() * renderer.Scale;
+        CenterPosition = Size * .5f;
+
+        GlobalPosition = new Vector2(
+                    CenterPosition.X + CenterPosition.X * indexPosition.X,
+                    CenterPosition.Y + CenterPosition.Y * indexPosition.Y
+                    );
+    }
 }

@@ -7,10 +7,10 @@ namespace Com.IsartDigital.TRPG;
 
 public partial class Root : Node2D
 {
-	public static Vector2 screenSize;
+	public Vector2 screenSize;
 	public override void _Ready()
 	{
-		screenSize = GetViewportRect().Size;
+		//screenSize = GetViewportRect().Size;
 	}
 
 	public override void _Process(double pDelta)

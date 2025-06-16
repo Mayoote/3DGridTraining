@@ -6,16 +6,28 @@ using System;
 
 namespace Com.IsartDigital.TRPG.GridElements;
 
-public partial class GridManager : Node
+public partial class GridManager : Node2D
 {
 	private Tile[,] grid;
+    public Vector2 screenSize;
 
-	[Export] private PackedScene tile;
-	[Export] private int ROW_NUMBER;
+    [Export] private int ROW_NUMBER;
 	[Export] private int COL_NUMBER;
 	[Export] private Node visualGrid;
 	public override void _Ready()
 	{
+		//screenSize = GetViewportRect().Size;
+		screenSize = new(1080, 1920);
+        Tile lTile = ShowTile(this);
+
+		int lNumberOfRows = Mathf.CeilToInt(screenSize.X / lTile.Size.X);
+		int lNumberOfCols = Mathf.CeilToInt(screenSize.Y / lTile.Size.Y);
+
+		ROW_NUMBER = lNumberOfRows;
+		COL_NUMBER = lNumberOfCols;
+
+
+		GD.Print(screenSize);
 		grid = CreateGrid();
 	}
 
@@ -34,13 +46,13 @@ public partial class GridManager : Node
 	{
         Vector2I lTileIndex;
 
-		Tile lTile = SpawnTile();
+		//Tile lTile = SpawnTile();
 
 		//ROW_NUMBER = Mathf.FloorToInt(Root.screenSize.X / lTile.Size.X);
 		//COL_NUMBER = Mathf.FloorToInt(Root.screenSize.Y / lTile.Size.Y);
 
 
-        Tile[,] lGrid = new Tile[ROW_NUMBER, COL_NUMBER];
+        Tile[,] lGrid = new Tile[COL_NUMBER, ROW_NUMBER];
 
         for (int x = 0; x < ROW_NUMBER; x++)
         {
@@ -49,7 +61,7 @@ public partial class GridManager : Node
                 lTileIndex = new Vector2I(x, y);
 				lGrid[y, x] = SetupTile(visualGrid, lTileIndex);
 
-                GD.Print(lGrid[y, x].indexPosition);
+                //GD.Print(lGrid[y, x].indexPosition);
             }
         }
 

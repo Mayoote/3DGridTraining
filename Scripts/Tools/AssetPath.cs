@@ -14,5 +14,9 @@ namespace Maitson.PIERRE.Tools {
         #region Scenes
         public const string TILE_SCENE_PATH = "res://Scenes/GridElements/Tile.tscn";
         #endregion
+
+        #region Names
+        public const string RENDERER_NAME = "Renderer";
+        #endregion
     }
 }
