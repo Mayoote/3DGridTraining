@@ -9,6 +9,8 @@ namespace Com.IsartDigital.TRPG.GridElements;
 public partial class GridManager : Node
 {
 	private Tile[,] grid;
+
+	[Export] private PackedScene tile;
 	[Export] private int ROW_NUMBER;
 	[Export] private int COL_NUMBER;
 	[Export] private Node visualGrid;
@@ -31,6 +33,13 @@ public partial class GridManager : Node
 	private Tile[,] CreateGrid()
 	{
         Vector2I lTileIndex;
+
+		Tile lTile = SpawnTile();
+
+		//ROW_NUMBER = Mathf.FloorToInt(Root.screenSize.X / lTile.Size.X);
+		//COL_NUMBER = Mathf.FloorToInt(Root.screenSize.Y / lTile.Size.Y);
+
+
         Tile[,] lGrid = new Tile[ROW_NUMBER, COL_NUMBER];
 
         for (int x = 0; x < ROW_NUMBER; x++)
@@ -38,25 +47,37 @@ public partial class GridManager : Node
             for (int y = 0; y < COL_NUMBER; y++)
             {
                 lTileIndex = new Vector2I(x, y);
-				lGrid[y, x] = SpawnTile(visualGrid, lTileIndex);
+				lGrid[y, x] = SetupTile(visualGrid, lTileIndex);
 
                 GD.Print(lGrid[y, x].indexPosition);
-                GD.Print("GLOBAL TILE POSITION : " + lGrid[y, x].GlobalPosition);
             }
         }
 
 		return lGrid;
     }
 
-	private Tile SpawnTile(Node pNode, Vector2I pTileIndex)
+	private Tile SetupTile(Node pNode, Vector2I pTileIndex)
 	{
+		Tile lTile = ShowTile(pNode);
+        lTile.indexPosition = pTileIndex;
 
-		PackedScene lTileFactory = GD.Load<PackedScene>(AssetPath.TILE_SCENE_PATH);
-		Tile lTile = lTileFactory.Instantiate<Tile>();
+		return lTile;
+    }
+
+	private Tile SpawnTile()
+	{
+        PackedScene lTileFactory = GD.Load<PackedScene>(AssetPath.TILE_SCENE_PATH);
+        Tile lTile = lTileFactory.Instantiate<Tile>();
+
+		return lTile;
+    }
+
+	private Tile ShowTile(Node pNode)
+	{
+		Tile lTile = SpawnTile();
 		pNode.AddChild(lTile);
-
-		lTile.indexPosition = pTileIndex;
 
 		return lTile;
 	}
+
 }

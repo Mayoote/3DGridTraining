@@ -27,7 +27,7 @@ public partial class Tile : Node2D
 		GlobalPosition = new Vector2(
 					CenterPosition.X + CenterPosition.X * indexPosition.X,
 					CenterPosition.Y + CenterPosition.Y * indexPosition.Y
-					);
+					) * renderer.Scale;
 	}
 
 	public override void _Process(double pDelta)

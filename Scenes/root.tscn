@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://jtoqvxbev30u"]
+[gd_scene load_steps=3 format=3 uid="uid://jtoqvxbev30u"]
 
+[ext_resource type="Script" path="res://Scripts/Root.cs" id="1_5pbbr"]
 [ext_resource type="Script" path="res://Scripts/GridElements/Managers/GridManager.cs" id="1_6fx71"]
 
 [node name="Root" type="Node2D"]
+script = ExtResource("1_5pbbr")
 
 [node name="ManagerOfManagers" type="Node" parent="."]
 
-[node name="GridManager" type="Node" parent="ManagerOfManagers" node_paths=PackedStringArray("visualGrid")]
+[node name="GridManager" type="Node2D" parent="ManagerOfManagers" node_paths=PackedStringArray("visualGrid")]
 script = ExtResource("1_6fx71")
 ROW_NUMBER = 5
 COL_NUMBER = 5
