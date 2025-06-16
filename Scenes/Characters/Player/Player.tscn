@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://h5u0qn4tadnj"]
+
+[ext_resource type="Texture2D" uid="uid://durcivit8srj0" path="res://Assets/Textures/Characters/Player/Chara_Faceless_Idle.png" id="1_owekb"]
+[ext_resource type="Texture2D" uid="uid://blodi63ab31mb" path="res://Assets/Textures/Characters/Player/Chara_Faceless_Walk_1.png" id="2_dgesy"]
+[ext_resource type="Texture2D" uid="uid://cjraymdbpx6br" path="res://Assets/Textures/Characters/Player/Chara_Faceless_Walk_2.png" id="3_iqk3k"]
+[ext_resource type="Texture2D" uid="uid://btvw10q06floh" path="res://Assets/Textures/Characters/Face/Sprite_chara_2050_eye_1.png" id="4_puxuq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pujjw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_owekb")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dgesy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_iqk3k")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 2.0
+}]
+
+[node name="Player" type="Node2D"]
+
+[node name="Renderer" type="AnimatedSprite2D" parent="."]
+position = Vector2(13, -13)
+sprite_frames = SubResource("SpriteFrames_pujjw")
+animation = &"Walk"
+frame_progress = 0.123419
+
+[node name="Face" type="Sprite2D" parent="Renderer"]
+position = Vector2(1, -541)
+texture = ExtResource("4_puxuq")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="Area"]
