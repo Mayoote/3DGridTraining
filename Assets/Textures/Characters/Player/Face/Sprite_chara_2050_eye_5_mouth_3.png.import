@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtodyae8r7e62"
-path="res://.godot/imported/Sprite_chara_2050_eye_5_mouth_3.png-0196ac48024e71e5cb8a2e8c39ba5904.ctex"
+path="res://.godot/imported/Sprite_chara_2050_eye_5_mouth_3.png-db83bd66361ab289b96f1c4db8f2a139.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/Characters/Face/Sprite_chara_2050_eye_5_mouth_3.png"
-dest_files=["res://.godot/imported/Sprite_chara_2050_eye_5_mouth_3.png-0196ac48024e71e5cb8a2e8c39ba5904.ctex"]
+source_file="res://Assets/Textures/Characters/Player/Face/Sprite_chara_2050_eye_5_mouth_3.png"
+dest_files=["res://.godot/imported/Sprite_chara_2050_eye_5_mouth_3.png-db83bd66361ab289b96f1c4db8f2a139.ctex"]
 
 [params]
 

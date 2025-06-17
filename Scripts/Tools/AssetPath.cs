@@ -13,6 +13,7 @@ namespace Maitson.PIERRE.Tools {
 
         #region Scenes
         public const string TILE_SCENE_PATH = "res://Scenes/GridElements/Tile.tscn";
+        public const string PLAYER_SCENE_PATH = "res://Scenes/Characters/Player/Player.tscn";
         #endregion
 
         #region Names

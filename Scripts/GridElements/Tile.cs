@@ -36,7 +36,7 @@ public partial class Tile : Node2D
 
 	}
 
-	private void SetupTile()
+	public void SetupTile()
 	{
 		renderer = (Sprite2D)FindChild(AssetPath.RENDERER_NAME);
         currentState = TileState.EMPTY;
@@ -47,5 +47,10 @@ public partial class Tile : Node2D
                     CenterPosition.X + CenterPosition.X * indexPosition.X,
                     CenterPosition.Y + CenterPosition.Y * indexPosition.Y
                     );
+
+		CenterPosition = new Vector2(
+			GlobalPosition.X - CenterPosition.X * .5f,
+			GlobalPosition.Y - CenterPosition.Y * .5f
+            );
     }
 }
