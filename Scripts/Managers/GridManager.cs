@@ -10,11 +10,12 @@ namespace Com.IsartDigital.TRPG.GridElements;
 
 public partial class GridManager : Node2D, IManager
 {
-	private Tile[,] grid;
+	private Tile[,,] grid;
     public Vector2 screenSize;
 	[Export] private Player player;
-    [Export] private int ROW_NUMBER;
-	[Export] private int COL_NUMBER;
+	[Export] private int FLOOR_NUMBER;
+    [Export] private int APARTMENT_NUMBER;
+	[Export] private int ROOM_NUMBER;
 	[Export] private Node visualGrid;
 
 
@@ -24,42 +25,53 @@ public partial class GridManager : Node2D, IManager
 		GD.Print(Name + " is ready !");
 	}
 
-	public override void _Ready()
-	{
-	}
 
 	public override void _Process(double pDelta)
 	{
 		float lDelta = (float)pDelta;
-
 	}
 
-	protected override void Dispose(bool pDisposing)
+
+	private Tile[,,] CreateGrid()
 	{
+		Vector3I lTileIndex;
+		//SetGridSize();
 
-	}
+		Tile[,,] lGrid = new Tile[FLOOR_NUMBER, APARTMENT_NUMBER, ROOM_NUMBER];
 
-	private Tile[,] CreateGrid()
-	{
-		Vector2I lTileIndex;
-		SetGridSize();
-
-		Tile[,] lGrid = new Tile[COL_NUMBER, ROW_NUMBER];
-
-		for (int x = 0; x < ROW_NUMBER; x++)
+		for (int x = 0; x < FLOOR_NUMBER; x++)
 		{
-			for (int y = 0; y < COL_NUMBER; y++)
+			for (int y = 0; y < APARTMENT_NUMBER; y++)
 			{
-				lTileIndex = new Vector2I(x, y);
-				lGrid[y, x] = SetupTile(visualGrid, lTileIndex);
+				for (int  z = 0; z < ROOM_NUMBER; z++)
+				{
+					lTileIndex = new Vector3I(x, y, z);
+					lGrid[y, x, z].indexPosition = lTileIndex;
 
-				//GD.Print(lGrid[y, x].indexPosition);
+                    GD.Print(lGrid[y, x, z].indexPosition);
+				}
 			}
 		}
 		 
-		player.Position = lGrid[2, 4].CenterPosition;
+		//player.Position = lGrid[2, 4].CenterPosition;
 		return lGrid;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// OBSELETE
 
 	private void SetGridSize()
 	{
@@ -69,11 +81,11 @@ public partial class GridManager : Node2D, IManager
         int lNumberOfRows = Mathf.CeilToInt(screenSize.X / lTile.Size.X);
         int lNumberOfCols = Mathf.CeilToInt(screenSize.Y / lTile.Size.Y);
 
-        ROW_NUMBER = lNumberOfRows;
-        COL_NUMBER = lNumberOfCols;
+        //ROW_NUMBER = lNumberOfRows;
+        //COL_NUMBER = lNumberOfCols;
     }
 
-    private Tile SetupTile(Node pNode, Vector2I pTileIndex)
+    private Tile SetupTile(Node pNode, Vector3I pTileIndex)
 	{
 		Tile lTile = ShowTile(pNode);
         lTile.indexPosition = pTileIndex;

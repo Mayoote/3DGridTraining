@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://jtoqvxbev30u"]
+[gd_scene load_steps=5 format=3 uid="uid://jtoqvxbev30u"]
 
 [ext_resource type="Script" path="res://Scripts/Root.cs" id="1_5pbbr"]
 [ext_resource type="Script" path="res://Scripts/Managers/GridManager.cs" id="1_6fx71"]
 [ext_resource type="Script" path="res://Scripts/Managers/ManagerOfManagers.cs" id="2_y6wqq"]
 [ext_resource type="Script" path="res://Scripts/Managers/GameManager.cs" id="3_l774t"]
-[ext_resource type="PackedScene" uid="uid://h5u0qn4tadnj" path="res://Scenes/Characters/Player/Player.tscn" id="4_fc2qi"]
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_5pbbr")
@@ -14,9 +13,10 @@ script = ExtResource("2_y6wqq")
 
 [node name="GridManager" type="Node2D" parent="ManagerOfManagers" node_paths=PackedStringArray("player", "visualGrid")]
 script = ExtResource("1_6fx71")
-player = NodePath("../../Game/Player")
+player = NodePath("")
 ROW_NUMBER = 9
 COL_NUMBER = 9
+FLOOR_NUMBER = 3
 visualGrid = NodePath("../../Game/VisualGrid")
 
 [node name="GameManager" type="Node" parent="ManagerOfManagers"]
@@ -25,6 +25,3 @@ script = ExtResource("3_l774t")
 [node name="Game" type="Node2D" parent="."]
 
 [node name="VisualGrid" type="Node" parent="Game"]
-
-[node name="Player" parent="Game" instance=ExtResource("4_fc2qi")]
-z_index = 330
