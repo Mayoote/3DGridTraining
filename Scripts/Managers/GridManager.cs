@@ -17,7 +17,7 @@ public partial class GridManager : Node2D, IManager
     private Tile[,,] grid;
     [Export] private Node visualGrid;
 
-    private int ROOM_NUMBER = 4;
+    private int ROOM_NUMBER = 5;
     [Export] private int FLOOR_NUMBER;
     [Export] private int APARTMENT_NUMBER;
 
@@ -41,7 +41,8 @@ public partial class GridManager : Node2D, IManager
         grid = CreateGrid();
         GD.Print(Name + " is ready !");
         
-        //IsTileOccupied(grid, new(0,0,0));
+       IsTileOccupied(grid, new(1,1,0));
+       WhoIsOnTargetTile(grid, new(1,1,0));
 
     }
 
@@ -56,8 +57,6 @@ public partial class GridManager : Node2D, IManager
     {
         //SetGridSize();
 
-        Vector3I lIndexPosition;
-
         Tile[,,] lGrid = new Tile[FLOOR_NUMBER, APARTMENT_NUMBER, ROOM_NUMBER];
 
         for (int x = 0; x < FLOOR_NUMBER; x++)
@@ -66,18 +65,24 @@ public partial class GridManager : Node2D, IManager
             {
                 for (int z = 0; z < ROOM_NUMBER; z++)
                 {
-                    lIndexPosition = new Vector3I(x, y, z);
-                    lGrid[x, y, z].indexPosition = lIndexPosition;
-
-                    GD.Print(lGrid[y, x, z].indexPosition);
+                    lGrid = SetupTile(lGrid, x, y, z);
                 }
             }
         }
-        GD.Print(lGrid[0,0,0].indexPosition);
-        // lGrid[1, 2, 0].occupants.Add(jack);
-        //lGrid[1, 2, 0].currentState = Tile.State.OCCUPIED;
-        //player.Position = lGrid[2, 4].CenterPosition;
+
         return lGrid;
+    }
+
+    private Tile[] Create1DGrid()
+    {
+        Tile[] lGrid = new Tile[FLOOR_NUMBER * APARTMENT_NUMBER * ROOM_NUMBER];
+
+        return lGrid;
+    }
+
+    private int From3DPositionToIndex(Vector3I pPosition, int pMaxX, int pMaxY, int pMaxZ)
+    {
+        return pPosition.Z * (pMaxX * pMaxY) + pPosition.Y * pMaxX + pPosition.X;
     }
 
 
@@ -109,11 +114,14 @@ public partial class GridManager : Node2D, IManager
         pGrid[pPosition.X, pPosition.Y, pPosition.Z].occupants.Add(pOccupant);
     }
 
-    private Tile SetupTile(Tile pTile, int pFloorNumber, int pApartmentNumber, int pRoomNumber)
+    private Tile[,,] SetupTile(Tile[,,] pGrid, int pFloorNumber, int pApartmentNumber, int pRoomNumber)
     {
-        pTile.indexPosition = new Vector3I(pFloorNumber, pApartmentNumber, pRoomNumber);
+        Vector3I lIndexPosition = new Vector3I(pFloorNumber, pApartmentNumber, pRoomNumber);
 
-        return pTile;
+        pGrid[pFloorNumber, pApartmentNumber, pRoomNumber] = new Tile();
+        pGrid[pFloorNumber, pApartmentNumber, pRoomNumber].indexPosition = lIndexPosition;
+
+        return pGrid;
     }
 
 

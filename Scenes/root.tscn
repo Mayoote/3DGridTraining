@@ -11,11 +11,11 @@ script = ExtResource("1_5pbbr")
 [node name="ManagerOfManagers" type="Node" parent="."]
 script = ExtResource("2_y6wqq")
 
-[node name="GridManager" type="Node2D" parent="ManagerOfManagers" node_paths=PackedStringArray("player", "visualGrid")]
+[node name="GridManager" type="Node2D" parent="ManagerOfManagers" node_paths=PackedStringArray("visualGrid")]
 script = ExtResource("1_6fx71")
-player = NodePath("")
 visualGrid = NodePath("../../Game/VisualGrid")
 FLOOR_NUMBER = 3
+APARTMENT_NUMBER = 2
 
 [node name="GameManager" type="Node" parent="ManagerOfManagers"]
 script = ExtResource("3_l774t")
