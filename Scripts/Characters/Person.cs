@@ -7,7 +7,7 @@ namespace Com.IsartDigital.TRPG.GridElements
 {
    public partial class Person : Node
 	{
-		public int age;
-		public string gender;
+		public bool isMinor;
+		public bool isMale;
 	}
 }

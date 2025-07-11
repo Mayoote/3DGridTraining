@@ -1,6 +1,7 @@
 using Godot;
 using Maitson.PIERRE.Tools;
 using System;
+using System.Collections.Generic;
 
 // Author : Maïtson PIERRE
 
@@ -8,7 +9,7 @@ namespace Com.IsartDigital.TRPG.GridElements;
 
 public partial class Tile : Node2D
 {
-	public enum TileState
+	public enum State
 	{
 		EMPTY,
 		OCCUPIED
@@ -16,10 +17,12 @@ public partial class Tile : Node2D
 
 	private Sprite2D renderer;
 
-	public TileState currentState;
 	public Vector3I indexPosition;
-	public Vector2 CenterPosition {  get; private set; }
-	public Vector2 Size {  get; private set; }
+	public State currentState = State.EMPTY;
+	public List<Person> occupants = new List<Person>();
+
+	//public Vector2 CenterPosition {  get; private set; }
+	//public Vector2 Size {  get; private set; }
 	public override void _Ready()
 	{
 		SetupTile();
